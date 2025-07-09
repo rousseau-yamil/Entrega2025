@@ -227,6 +227,15 @@ router.get('/usuario',passport.authenticate('current',{session:false}),async(req
         datos:`email:${req.user.email}`
     })
 })
+//Pedida en la entrega
+router.get('/current',passport.authenticate('current',{session:false}),async(req,res)=>{
+    res.setHeader('Content-type','application/json')
+    
+    res.status(200).json({
+        mensaje:'Perfil de:'+ req.user.first_name,
+        datos:`email:${req.user.email}`
+    })
+})
 
 router.post('/login',async(req,res)=>{
     let {email, password} = req.body
